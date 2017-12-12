@@ -1,4 +1,4 @@
-package org.EnquiryManagementSystem;
+package org.janarnd.hrmis;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
