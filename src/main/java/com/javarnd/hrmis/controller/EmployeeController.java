@@ -55,11 +55,11 @@ public class EmployeeController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(value=HttpStatus.OK)
     public Collection<Resource<EmployeeModel>> getAllEmployees() throws UserException {
-        List<EmployeeModel> books = employeeService.findAll();
-		if(books != null) {
+        List<EmployeeModel> employees = employeeService.findAll();
+		if(employees != null) {
 			List<Resource<EmployeeModel>> resources = new ArrayList<Resource<EmployeeModel>>();
-			for(EmployeeModel bookModel : books)
-				resources.add(getEmployeeModelResource(bookModel));
+			for(EmployeeModel employeeModel : employees)
+				resources.add(getEmployeeModelResource(employeeModel));
 			return resources;
 		}
 		return null;
@@ -67,14 +67,15 @@ public class EmployeeController {
     
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value=HttpStatus.CREATED)
-    public Resource<EmployeeModel> saveEmployee(@RequestBody EmployeeModel bookToSave) throws UserException {
-        return getEmployeeModelResource(employeeService.create(bookToSave));
+    public Resource<EmployeeModel> saveEmployee(@RequestBody EmployeeModel employeeToSave) throws UserException {
+        return getEmployeeModelResource(employeeService.create(employeeToSave));
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value=HttpStatus.OK)
-    public Resource<EmployeeModel> updateEmployee(@RequestBody EmployeeModel bookToUpdate, @PathVariable(name = "id") String id) throws UserException {
-        return getEmployeeModelResource(employeeService.update(bookToUpdate));
+    public Resource<EmployeeModel> updateEmployee(@RequestBody EmployeeModel employeeToUpdate, @PathVariable(name = "id") Long id) throws UserException {
+    	employeeToUpdate.setId(id);
+        return getEmployeeModelResource(employeeService.update(employeeToUpdate));
     }
     
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
@@ -83,10 +84,11 @@ public class EmployeeController {
     	employeeService.delete(Long.parseLong(id));
     }
     
-    private Resource<EmployeeModel> getEmployeeModelResource(EmployeeModel bookModel) throws UserException {
-		Resource<EmployeeModel> resource = new Resource<EmployeeModel>(bookModel);
+    private Resource<EmployeeModel> getEmployeeModelResource(EmployeeModel employeeModel) throws UserException {
+    	System.out.println(employeeModel.getEmpName());
+		Resource<EmployeeModel> resource = new Resource<EmployeeModel>(employeeModel);
 		// Link to EmployeeModel
-		resource.add(linkTo(methodOn(EmployeeController.class).getEmployee(String.valueOf(bookModel.getId()))).withSelfRel());
+		resource.add(linkTo(methodOn(EmployeeController.class).getEmployee(String.valueOf(employeeModel.getId()))).withSelfRel());
 		return resource;
 	}
     

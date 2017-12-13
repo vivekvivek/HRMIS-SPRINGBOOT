@@ -8,7 +8,7 @@ import com.github.jmnarloch.spring.boot.modelmapper.ConverterConfigurerSupport;
 import com.javarnd.hrmis.dto.EmployeeModel;
 import com.javarnd.hrmis.model.Employee;
 
-@Component
+//@Component
 public class EmployeeModelToEmployeeMapper extends ConverterConfigurerSupport<EmployeeModel, Employee> {
     
 	@Override
@@ -18,6 +18,7 @@ public class EmployeeModelToEmployeeMapper extends ConverterConfigurerSupport<Em
             protected Employee convert(EmployeeModel source) {
                 System.out.println("converter method from UserModelToUserMapper class");
                 Employee user = new Employee();
+                
                 return user;
             }
         };
