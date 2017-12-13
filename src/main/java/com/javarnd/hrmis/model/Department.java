@@ -1,15 +1,20 @@
 package com.javarnd.hrmis.model;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Department extends BaseEntity {
 	
 	private String departmentName;
 	
-	private List<Employee> employees;
+	//@OneToMany(targetEntity=Employee.class, mappedBy = "department", cascade=CascadeType.ALL)
+	@OneToMany(targetEntity=Employee.class, mappedBy = "department")
+	private Set<Employee> employees = new HashSet<Employee>();
 
 	public String getDepartmentName() {
 		return departmentName;
@@ -19,12 +24,12 @@ public class Department extends BaseEntity {
 		this.departmentName = departmentName;
 	}
 
-	public List<Employee> getEmployees() {
+	public Set<Employee> getEmployees() {
 		return employees;
 	}
 
-	public void setEmployees(List<Employee> employees) {
+	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
-	
+
 }

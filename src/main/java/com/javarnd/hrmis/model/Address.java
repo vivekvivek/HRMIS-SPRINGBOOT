@@ -1,9 +1,7 @@
 package com.javarnd.hrmis.model;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 
-@Entity
 @Embeddable
 public class Address {
 	
