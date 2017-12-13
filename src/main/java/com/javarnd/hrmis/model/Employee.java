@@ -18,6 +18,11 @@ import com.javarnd.hrmis.constant.MaritalStatus;
 @Table(name="EMPLOYEE_DETAILS")
 public class Employee extends BaseEntity {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "employee_name" , nullable = false)
 	private String empName;
 	
