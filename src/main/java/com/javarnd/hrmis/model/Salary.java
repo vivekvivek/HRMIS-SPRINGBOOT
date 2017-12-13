@@ -11,7 +11,7 @@ public class Salary extends BaseEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -879515573004080915L;
 
 	private double salary;
 	

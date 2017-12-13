@@ -6,11 +6,11 @@ import javax.persistence.Entity;
 
 @Entity
 public class Department extends BaseEntity {
-	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4220057626667902900L;
 
 	private String departmentName;
 	
