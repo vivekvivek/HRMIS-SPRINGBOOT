@@ -13,8 +13,12 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class BaseEntity implements Serializable {
-    
-    private Long id;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7312945951808218150L;
+	private Long id;
     private Long dateCreated;
     private Long dateUpdated;
  

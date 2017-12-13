@@ -17,7 +17,12 @@ import com.javarnd.hrmis.constant.MaritalStatus;
 @Entity
 @Table(name="EMPLOYEE_DETAILS")
 public class Employee extends BaseEntity {
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5436742491317719312L;
+
 	@Column(name = "employee_name" , nullable = false)
 	private String empName;
 	
