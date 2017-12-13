@@ -9,26 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Salary {
+public class Salary extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
 	private double salary;
 	
 	@Column(name = "credit date" , nullable = false)
 	private Date creditDate;
 	
 	private Employee employee;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public double getSalary() {
 		return salary;
@@ -53,8 +41,5 @@ public class Salary {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
-	
-	
 	
 }
