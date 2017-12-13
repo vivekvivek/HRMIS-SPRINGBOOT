@@ -3,13 +3,17 @@ package com.javarnd.hrmis.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Department extends BaseEntity {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 163268369889699144L;
+
 	private String departmentName;
 	
 	//@OneToMany(targetEntity=Employee.class, mappedBy = "department", cascade=CascadeType.ALL)
