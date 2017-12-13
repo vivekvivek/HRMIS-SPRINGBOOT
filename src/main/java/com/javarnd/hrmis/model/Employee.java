@@ -1,13 +1,16 @@
 package com.javarnd.hrmis.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.javarnd.hrmis.constant.Gender;
@@ -18,22 +21,28 @@ import com.javarnd.hrmis.constant.MaritalStatus;
 @Table(name="EMPLOYEE_DETAILS")
 public class Employee extends BaseEntity {
 	
-	@Column(name = "employee_name" , nullable = false)
+	//@Column(name = "employee_name" , nullable = false)
+	@Column(name = "employee_name")
 	private String empName;
 	
-	@Column(name = "contact_number" , nullable = false)
+	//@Column(name = "contact_number" , nullable = false)
+	@Column(name = "contact_number")
 	private String contactNumber;
 	
-	@Column(name = "passport_number" , nullable = false)
+	//@Column(name = "passport_number" , nullable = false)
+	@Column(name = "passport_number")
 	private String passportNumber;
 	
-	@Column(name = "account_number" , nullable = false)
+	//@Column(name = "account_number" , nullable = false)
+	@Column(name = "account_number")
 	private String bankAccountNumber;
 	
-	@Column(name = "voter_id" , nullable = false)
+	//@Column(name = "voter_id" , nullable = false)
+	@Column(name = "voter_id")
 	private String voterId;
 	
-	@Column(name = "driving_license" , nullable = false)
+	//@Column(name = "driving_license" , nullable = false)
+	@Column(name = "driving_license")
 	private String drivingLicense;
 	
 	private String uid;
@@ -46,13 +55,16 @@ public class Employee extends BaseEntity {
 	
 	private String grade;
 	
-	@Column(name = "date_of_birth" , nullable = false)
+	//@Column(name = "date_of_birth" , nullable = false)
+	@Column(name = "date_of_birth")
 	private Date dob;
 	
-	@Column(name = "date_of_confirmation" , nullable = false)
+	//@Column(name = "date_of_confirmation" , nullable = false)
+	@Column(name = "date_of_confirmation")
 	private Date dateOfConfirmation;
 	
-	@Column(name = "date_of_joining" , nullable = false)
+	//@Column(name = "date_of_joining" , nullable = false)
+	@Column(name = "date_of_joining")
 	private Date dateOfJoining;
 	
 	@Column(name = "gender" )
@@ -64,13 +76,12 @@ public class Employee extends BaseEntity {
 	private MaritalStatus maritalStatus;
 	
 	private Department department;
+
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<EmployeeProject> employeeProjects = new HashSet<EmployeeProject>();
 	
-	@Embedded
-	private List<Address> address;
-	
-	private List<Project> projects;
-	
-	private List<Salary> salaries;
+	@ElementCollection
+	private Set<Address> listOfAddress = new HashSet<Address>();
 
 	public String getEmpName() {
 		return empName;
@@ -208,28 +219,20 @@ public class Employee extends BaseEntity {
 		this.department = department;
 	}
 
-	public List<Address> getAddress() {
-		return address;
+	public Set<Address> getListOfAddress() {
+		return listOfAddress;
 	}
 
-	public void setAddress(List<Address> address) {
-		this.address = address;
+	public void setListOfAddress(Set<Address> listOfAddress) {
+		this.listOfAddress = listOfAddress;
 	}
 
-	public List<Project> getProjects() {
-		return projects;
+	public Set<EmployeeProject> getEmployeeProjects() {
+		return employeeProjects;
 	}
 
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
-	}
-
-	public List<Salary> getSalaries() {
-		return salaries;
-	}
-
-	public void setSalaries(List<Salary> salaries) {
-		this.salaries = salaries;
+	public void setEmployeeProjects(Set<EmployeeProject> employeeProjects) {
+		this.employeeProjects = employeeProjects;
 	}
 	
 }
