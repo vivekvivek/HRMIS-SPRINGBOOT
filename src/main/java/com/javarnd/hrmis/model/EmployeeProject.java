@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Table(name = "employee_project")
 public class EmployeeProject implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6906715891630210616L;
+
 	@Id
     @ManyToOne(targetEntity=Employee.class)
     @JoinColumn(name = "employee_id")
