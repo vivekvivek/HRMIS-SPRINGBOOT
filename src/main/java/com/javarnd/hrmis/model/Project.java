@@ -1,5 +1,5 @@
 package com.javarnd.hrmis.model;
 
-public class Project {
-
+public class Project extends BaseEntity {
+	
 }

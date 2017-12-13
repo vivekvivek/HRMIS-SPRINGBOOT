@@ -1,16 +1,11 @@
 package com.javarnd.hrmis.model;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
+@Embeddable
 public class Address {
-
-	@Id
-	@GeneratedValue(strategy =GenerationType.AUTO)
-	private long id;
 	
 	private String country;
 	
@@ -19,14 +14,6 @@ public class Address {
 	private String city;
 	
 	private String street;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getCountry() {
 		return country;
@@ -59,6 +46,5 @@ public class Address {
 	public void setStreet(String street) {
 		this.street = street;
 	}
-	
-	
+		
 }

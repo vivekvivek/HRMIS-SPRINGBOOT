@@ -4,78 +4,73 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+import com.javarnd.hrmis.constant.Gender;
+import com.javarnd.hrmis.constant.MaritalStatus;
 
 
 @Entity
-public class Employee {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "employee code")
-	private long empCode;
+@Table(name="EMPLOYEE_DETAILS")
+public class Employee extends BaseEntity {
 	
-	@Column(name = "employee name" , nullable = false)
+	@Column(name = "employee_name" , nullable = false)
 	private String empName;
 	
-	@Column(name = "contact number" , nullable = false)
+	@Column(name = "contact_number" , nullable = false)
 	private String contactNumber;
 	
-	@Column(name = "date of birth" , nullable = false)
-	private Date dob;
-	
-	@Column(name = "date of confirmation" , nullable = false)
-	private Date dateOfConfirmation;
-	
-	@Column(name = "date of joining" , nullable = false)
-	private Date dateOfJoining;
-	
-	
-	private List<Address> address;
-	
-	private Enum gender ;
-	
-	@Column(name = "maritial Status" )
-	private Enum maritialStatus;
-	
-	@Column(name = "passport number" , nullable = false)
+	@Column(name = "passport_number" , nullable = false)
 	private String passportNumber;
 	
-	@Column(name = "account number" , nullable = false)
+	@Column(name = "account_number" , nullable = false)
 	private String bankAccountNumber;
 	
-	@Column(name = "voter id" , nullable = false)
+	@Column(name = "voter_id" , nullable = false)
 	private String voterId;
 	
-	@Column(name = "driving license" , nullable = false)
+	@Column(name = "driving_license" , nullable = false)
 	private String drivingLicense;
 	
 	private String uid;
 	
 	private String pancard;
 	
-	private String Email;
+	private String email;
 	
 	private String designation;
 	
 	private String grade;
 	
-	private List<Departmet> departments;
+	@Column(name = "date_of_birth" , nullable = false)
+	private Date dob;
 	
-	private List<Salary> salaries;
+	@Column(name = "date_of_confirmation" , nullable = false)
+	private Date dateOfConfirmation;
+	
+	@Column(name = "date_of_joining" , nullable = false)
+	private Date dateOfJoining;
+	
+	@Column(name = "gender" )
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
+	
+	@Column(name = "marital_status" )
+	@Enumerated(EnumType.STRING)
+	private MaritalStatus maritalStatus;
+	
+	private Department department;
+	
+	@Embedded
+	private List<Address> address;
 	
 	private List<Project> projects;
-
-	public long getEmpCode() {
-		return empCode;
-	}
-
-	public void setEmpCode(long empCode) {
-		this.empCode = empCode;
-	}
+	
+	private List<Salary> salaries;
 
 	public String getEmpName() {
 		return empName;
@@ -91,54 +86,6 @@ public class Employee {
 
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
-	}
-
-	public Date getDob() {
-		return dob;
-	}
-
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
-
-	public Date getDateOfConfirmation() {
-		return dateOfConfirmation;
-	}
-
-	public void setDateOfConfirmation(Date dateOfConfirmation) {
-		this.dateOfConfirmation = dateOfConfirmation;
-	}
-
-	public Date getDateOfJoining() {
-		return dateOfJoining;
-	}
-
-	public void setDateOfJoining(Date dateOfJoining) {
-		this.dateOfJoining = dateOfJoining;
-	}
-
-	public List<Address> getAddress() {
-		return address;
-	}
-
-	public void setAddress(List<Address> address) {
-		this.address = address;
-	}
-
-	public Enum getGender() {
-		return gender;
-	}
-
-	public void setGender(Enum gender) {
-		this.gender = gender;
-	}
-
-	public Enum getMaritialStatus() {
-		return maritialStatus;
-	}
-
-	public void setMaritialStatus(Enum maritialStatus) {
-		this.maritialStatus = maritialStatus;
 	}
 
 	public String getPassportNumber() {
@@ -190,11 +137,11 @@ public class Employee {
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getDesignation() {
@@ -213,20 +160,60 @@ public class Employee {
 		this.grade = grade;
 	}
 
-	public List<Departmet> getDepartments() {
-		return departments;
+	public Date getDob() {
+		return dob;
 	}
 
-	public void setDepartments(List<Departmet> departments) {
-		this.departments = departments;
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 
-	public List<Salary> getSalaries() {
-		return salaries;
+	public Date getDateOfConfirmation() {
+		return dateOfConfirmation;
 	}
 
-	public void setSalaries(List<Salary> salaries) {
-		this.salaries = salaries;
+	public void setDateOfConfirmation(Date dateOfConfirmation) {
+		this.dateOfConfirmation = dateOfConfirmation;
+	}
+
+	public Date getDateOfJoining() {
+		return dateOfJoining;
+	}
+
+	public void setDateOfJoining(Date dateOfJoining) {
+		this.dateOfJoining = dateOfJoining;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public MaritalStatus getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public void setMaritalStatus(MaritalStatus maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public List<Address> getAddress() {
+		return address;
+	}
+
+	public void setAddress(List<Address> address) {
+		this.address = address;
 	}
 
 	public List<Project> getProjects() {
@@ -236,6 +223,13 @@ public class Employee {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-	
+
+	public List<Salary> getSalaries() {
+		return salaries;
+	}
+
+	public void setSalaries(List<Salary> salaries) {
+		this.salaries = salaries;
+	}
 	
 }
