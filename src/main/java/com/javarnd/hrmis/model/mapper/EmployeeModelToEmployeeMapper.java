@@ -8,7 +8,7 @@ import com.github.jmnarloch.spring.boot.modelmapper.ConverterConfigurerSupport;
 import com.javarnd.hrmis.dto.EmployeeModel;
 import com.javarnd.hrmis.model.Employee;
 
-@Component
+//@Component
 public class EmployeeModelToEmployeeMapper extends ConverterConfigurerSupport<EmployeeModel, Employee> {
     
 	@Override
