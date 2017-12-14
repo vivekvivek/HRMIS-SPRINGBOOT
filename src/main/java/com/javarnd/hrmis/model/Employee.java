@@ -16,11 +16,19 @@ import javax.persistence.Table;
 import com.javarnd.hrmis.constant.Gender;
 import com.javarnd.hrmis.constant.MaritalStatus;
 
+import io.swagger.annotations.ApiModel;
+
 
 @Entity
 @Table(name="EMPLOYEE_DETAILS")
+@ApiModel(value="Employee")
 public class Employee extends BaseEntity {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3333915245183431428L;
+
 	//@Column(name = "employee_name" , nullable = false)
 	@Column(name = "employee_name")
 	private String empName;

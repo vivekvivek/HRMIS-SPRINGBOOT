@@ -9,10 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import io.swagger.annotations.ApiModel;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@ApiModel(value="BaseEntity")
 public abstract class BaseEntity implements Serializable {
     
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7312945951808218150L;
 	@Id 
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;

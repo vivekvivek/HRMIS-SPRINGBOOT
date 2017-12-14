@@ -2,7 +2,10 @@ package com.javarnd.hrmis.model;
 
 import javax.persistence.Embeddable;
 
+import io.swagger.annotations.ApiModel;
+
 @Embeddable
+@ApiModel(value="Address")
 public class Address {
 	
 	private String country;
