@@ -3,7 +3,6 @@ package com.javarnd.hrmis.controller;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -51,10 +50,10 @@ public class EmployeeController {
     @ApiOperation("Gets the employee with specific id")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = EmployeeModel.class)})
     @ResponseStatus(value=HttpStatus.OK)
-    public Resource<EmployeeModel> getEmployee(@ApiParam(value = "ID of the Employee", required = true)@PathVariable(name = "id") String id) throws UserException {
+    public Resource<EmployeeModel> getEmployee(@ApiParam(value = "ID of the Employee", required = true)@PathVariable(name = "id") Long id) throws UserException {
     	logger.debug("getEmployee(POST) is invoked ... " + id);
     	
-    	return getEmployeeModelResource(employeeService.findOne(Long.parseLong(id)));
+    	return getEmployeeModelResource(employeeService.findOne(id));
     }
     
     @RequestMapping(method = RequestMethod.GET)
@@ -62,11 +61,11 @@ public class EmployeeController {
     @ResponseStatus(value=HttpStatus.OK)
     public Collection<Resource<EmployeeModel>> getAllEmployees() throws UserException {
     	logger.debug("getAllEmployees(POST) is invoked");
-        List<EmployeeModel> books = employeeService.findAll();
-		if(books != null) {
+        List<EmployeeModel> employees = employeeService.findAll();
+		if(employees != null) {
 			List<Resource<EmployeeModel>> resources = new ArrayList<Resource<EmployeeModel>>();
-			for(EmployeeModel bookModel : books)
-				resources.add(getEmployeeModelResource(bookModel));
+			for(EmployeeModel employeeModel : employees)
+				resources.add(getEmployeeModelResource(employeeModel));
 			return resources;
 		}
 		return null;
@@ -84,7 +83,7 @@ public class EmployeeController {
     @ApiOperation("API to update employee")
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value=HttpStatus.OK)
-    public Resource<EmployeeModel> updateEmployee(@RequestBody EmployeeModel employeeModel, @PathVariable(name = "id") String id) throws UserException {
+    public Resource<EmployeeModel> updateEmployee(@RequestBody EmployeeModel employeeModel, @PathVariable(name = "id") Long id) throws UserException {
     	logger.debug("saveEmployee(POST) is invoked ... " + employeeModel);
         return getEmployeeModelResource(employeeService.update(employeeModel));
     }
@@ -92,16 +91,16 @@ public class EmployeeController {
     @ApiOperation("API to delete employee")
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value=HttpStatus.OK)
-    public void deleteEmployee(@ApiParam(value = "ID of the Employee", required = true) @PathVariable(name = "id") String id) {
+    public void deleteEmployee(@ApiParam(value = "ID of the Employee", required = true) @PathVariable(name = "id") Long id) {
     	logger.debug("deleteEmployee(POST) is invoked ... " + id);
-    	employeeService.delete(Long.parseLong(id));
+    	employeeService.delete(id);
     }
     
     private Resource<EmployeeModel> getEmployeeModelResource(EmployeeModel employeeModel) throws UserException {
     	logger.debug("getEmployeeModelResource(POST) is invoked ... " + employeeModel);
 		Resource<EmployeeModel> resource = new Resource<EmployeeModel>(employeeModel);
 		// Link to EmployeeModel
-		resource.add(linkTo(methodOn(EmployeeController.class).getEmployee(String.valueOf(employeeModel.getId()))).withSelfRel());
+		resource.add(linkTo(methodOn(EmployeeController.class).getEmployee(employeeModel.getId())).withSelfRel());
 		return resource;
 	}
     
