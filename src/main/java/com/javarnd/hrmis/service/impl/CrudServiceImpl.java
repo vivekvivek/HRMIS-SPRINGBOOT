@@ -62,11 +62,11 @@ public class CrudServiceImpl<TEntity extends BaseEntity, TModel> implements Crud
     }
  
     protected void beforeUpdate(TEntity entity) {
-        entity.setDateUpdated(new Date().getTime());
+        entity.setDateUpdated(new Date());
     }
  
     protected void beforeAdd(TEntity entity) {
-        entity.setDateCreated(new Date().getTime());
+        entity.setDateCreated(new Date());
     }
     
 }
