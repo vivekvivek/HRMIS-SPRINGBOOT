@@ -6,7 +6,10 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import io.swagger.annotations.ApiModel;
+
 @Entity
+@ApiModel(value="Department")
 public class Department extends BaseEntity {
 	
 	/**

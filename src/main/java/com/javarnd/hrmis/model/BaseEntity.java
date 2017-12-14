@@ -9,8 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import io.swagger.annotations.ApiModel;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@ApiModel(value="BaseEntity")
 public abstract class BaseEntity implements Serializable {
     
 	/**

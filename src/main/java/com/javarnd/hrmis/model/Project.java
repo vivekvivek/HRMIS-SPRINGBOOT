@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+
 @Entity
 @Table(name="PROJECT_DETAILS")
+@ApiModel(value="Project")
 public class Project extends BaseEntity {
 	
 	/**
