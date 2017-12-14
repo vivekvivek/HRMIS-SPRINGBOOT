@@ -35,11 +35,12 @@ import io.swagger.annotations.ApiResponses;
 @Api(value = "EmployeeControllerAPI", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EmployeeController {
 
+	@Autowired
     private EmployeeService employeeService;
     
     private Logger LOG = LoggerFactory.getLogger(EmployeeController.class);
 
-    @Autowired
+    
     public void setEmployeeService(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
@@ -68,7 +69,10 @@ public class EmployeeController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value=HttpStatus.CREATED)
     public Resource<EmployeeModel> saveEmployee(@RequestBody EmployeeModel bookToSave) throws UserException {
-        return getEmployeeModelResource(employeeService.create(bookToSave));
+        
+    	
+    	
+    	return getEmployeeModelResource(employeeService.create(bookToSave));
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
