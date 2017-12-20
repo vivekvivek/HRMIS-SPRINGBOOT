@@ -8,9 +8,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+
 @Entity
 @Table(name = "employee_project")
+@ApiModel(value="EmployeeProject")
 public class EmployeeProject implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6906715891630210616L;
 
 	@Id
     @ManyToOne(targetEntity=Employee.class)
