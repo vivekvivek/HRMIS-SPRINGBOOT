@@ -30,8 +30,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(path = "/api/employees", produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(value = "EmployeeControllerAPI", description = "Provides all actions related to employee.")
+@RequestMapping(path = "/secure/employees", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(value = "EmployeeControllerAPI")
 public class EmployeeController {
 
 	@Autowired
