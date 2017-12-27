@@ -24,11 +24,9 @@ public class HrmisApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		if(employeeRepository.count()==0) {
-			Employee employee = new Employee();
-			employee.setEmpName("Employee 1");
-			employeeRepository.save(employee);
-		}
+		Employee employee = new Employee();
+		employee.setEmpName("Employee 1");
+		employeeRepository.save(employee);
 		
 	}
 }
