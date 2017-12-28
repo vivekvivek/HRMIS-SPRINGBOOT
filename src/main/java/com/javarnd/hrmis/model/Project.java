@@ -7,20 +7,24 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import io.swagger.annotations.ApiModel;
 
 @Entity
 @Table(name="PROJECT_DETAILS")
 @ApiModel(value="Project")
-public class Project extends BaseEntity {
+@GenericGenerator(name=IdGen.NAME, strategy=IdGen.AUTO)
+public class Project extends IdEntity<Long> {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3369454155370084918L;
-	@OneToMany(mappedBy = "project")
+	//@OneToMany(mappedBy = "project")
 	private Set<EmployeeProject> employeeProjects = new HashSet<EmployeeProject>();
 
+	@OneToMany(mappedBy = "project")
 	public Set<EmployeeProject> getEmployeeProjects() {
 		return employeeProjects;
 	}

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(path = "/api/employees", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/secure/employees", produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(value = "EmployeeControllerAPI", description = "Provides all actions related to employee.")
 public class EmployeeController {
 
@@ -47,6 +48,7 @@ public class EmployeeController {
 	@ApiOperation("Gets the employee with specific id")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = EmployeeModel.class) })
 	@ResponseStatus(value = HttpStatus.OK)
+	@PreAuthorize("hasRole('ADMIN')")
 	public Resource<EmployeeModel> getEmployee(
 			@ApiParam(value = "ID of the Employee", required = true) @PathVariable(name = "id") Long id)
 			throws UserException {
