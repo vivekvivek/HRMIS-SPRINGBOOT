@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.javarnd.hrmis.model.Authority;
 import com.javarnd.hrmis.model.Employee;
@@ -43,24 +44,25 @@ public class HrmisApplication implements CommandLineRunner {
 			authorityRepository.save(authorityAdmin);
 		}
 		if(employeeRepository.count() == 0){
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			Employee user = new Employee();
 			//user.setEmpCode(101L);
 			user.setEmpName("Alex");
-			user.setPassword("password");
+			user.setPassword(passwordEncoder.encode("password"));
 			user.setAuthorities(new HashSet<Authority>(Arrays.asList(authorityUser)));
 			employeeRepository.save(user);
 			
 			Employee admin = new Employee();
 			//admin.setEmpCode(102L);
 			admin.setEmpName("Flex");
-			admin.setPassword("adminpassword");
+			admin.setPassword(passwordEncoder.encode("adminpassword"));
 			admin.setAuthorities(new HashSet<Authority>(Arrays.asList(authorityAdmin)));
 			employeeRepository.save(admin);
 			
 			Employee superUser = new Employee();
 			//superUser.setEmpCode(103L);
 			superUser.setEmpName("AlexFlex");
-			superUser.setPassword("superassword");
+			superUser.setPassword(passwordEncoder.encode("superassword"));
 			superUser.setAuthorities(new HashSet<Authority>(Arrays.asList(authorityUser, authorityAdmin)));
 			employeeRepository.save(superUser);
 		}
