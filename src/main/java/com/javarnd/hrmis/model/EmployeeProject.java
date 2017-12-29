@@ -20,16 +20,19 @@ public class EmployeeProject implements Serializable {
 	 */
 	private static final long serialVersionUID = 6906715891630210616L;
 
+	/*@Id
+    @ManyToOne(targetEntity=Employee.class)
+    @JoinColumn(name = "employee_id")*/
+	private Employee employee;
+	
+	/*@Id
+    @ManyToOne(targetEntity=Project.class)
+    @JoinColumn(name = "project_id")*/
+	private Project project;
+
 	@Id
     @ManyToOne(targetEntity=Employee.class)
     @JoinColumn(name = "employee_id")
-	private Employee employee;
-	
-	@Id
-    @ManyToOne(targetEntity=Project.class)
-    @JoinColumn(name = "project_id")
-	private Project project;
-
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -38,6 +41,9 @@ public class EmployeeProject implements Serializable {
 		this.employee = employee;
 	}
 
+	@Id
+    @ManyToOne(targetEntity=Project.class)
+    @JoinColumn(name = "project_id")
 	public Project getProject() {
 		return project;
 	}
