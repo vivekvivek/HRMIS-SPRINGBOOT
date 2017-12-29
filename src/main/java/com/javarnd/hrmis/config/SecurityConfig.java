@@ -45,9 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-        /*auth.userDetailsService(userDetailsService)
-                .passwordEncoder(encoder());*/
-    	auth.userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(encoder());
+    	//auth.userDetailsService(userDetailsService);
     }
 
     @Override
@@ -82,10 +82,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return store;
     }
 
-    /*@Bean
+    @Bean
     public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
-    }*/
+    }
 
     @Bean
     public FilterRegistrationBean corsFilter() {

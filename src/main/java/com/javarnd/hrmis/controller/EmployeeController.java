@@ -48,7 +48,6 @@ public class EmployeeController {
 	@ApiOperation("Gets the employee with specific id")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = EmployeeModel.class) })
 	@ResponseStatus(value = HttpStatus.OK)
-	@PreAuthorize("hasRole('ADMIN')")
 	public Resource<EmployeeModel> getEmployee(
 			@ApiParam(value = "ID of the Employee", required = true) @PathVariable(name = "id") Long id)
 			throws UserException {
@@ -75,6 +74,7 @@ public class EmployeeController {
 	@ApiOperation("API to create employee")
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.CREATED)
+	//@PreAuthorize("hasRole('ADMIN')")
 	public EmployeeModel saveEmployee(@RequestBody EmployeeModel employeeModel) throws UserException {
 		logger.debug("saveEmployee(POST) is invoked ... " + employeeModel);
 		return employeeService.create(employeeModel);
@@ -83,6 +83,7 @@ public class EmployeeController {
 	@ApiOperation("API to update employee")
 	@RequestMapping(path = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
+	//@PreAuthorize("hasRole('ADMIN')")
 	public Resource<EmployeeModel> updateEmployee(@RequestBody EmployeeModel employeeModel,
 			@PathVariable(name = "id") Long id) throws UserException {
 		logger.debug("saveEmployee(POST) is invoked ... " + employeeModel);
