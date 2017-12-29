@@ -14,8 +14,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-	static final String CLIEN_ID = "devglan-client";
-	static final String CLIENT_SECRET = "devglan-secret";
+	static final String CLIEN_ID = "hrmis-client";
+	static final String CLIENT_SECRET = "hrmis-secret";
 	static final String GRANT_TYPE = "password";
 	static final String SCOPE_READ = "read";
 	static final String SCOPE_WRITE = "write";
