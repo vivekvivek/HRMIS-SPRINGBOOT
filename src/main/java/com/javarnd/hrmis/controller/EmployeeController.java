@@ -65,7 +65,12 @@ public class EmployeeController {
 			@ApiParam(value = "ID of the Employee", required = true) @PathVariable(name = "id") Long id)
 			throws UserException {
 		logger.debug("getEmployee(POST) is invoked ... " + id);
-
+		String username = currentUserNameSimple();
+		Long empCode = Long.parseLong(username);
+		if(!id.equals(empCode)) {
+			// User should not be able to access any other id information
+			logger.debug("User is trying to access another id information");
+		}
 		return getEmployeeModelResource(employeeService.findOne(id));
 	}
 
