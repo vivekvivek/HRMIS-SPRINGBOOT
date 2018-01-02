@@ -46,21 +46,21 @@ public class HrmisApplication implements CommandLineRunner {
 		if(employeeRepository.count() == 0){
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			Employee user = new Employee();
-			//user.setEmpCode(101L);
+			user.setEmpCode(101L);
 			user.setEmpName("Alex");
 			user.setPassword(passwordEncoder.encode("password"));
 			user.setAuthorities(new HashSet<Authority>(Arrays.asList(authorityUser)));
 			employeeRepository.save(user);
 			
 			Employee admin = new Employee();
-			//admin.setEmpCode(102L);
+			admin.setEmpCode(102L);
 			admin.setEmpName("Flex");
 			admin.setPassword(passwordEncoder.encode("adminpassword"));
 			admin.setAuthorities(new HashSet<Authority>(Arrays.asList(authorityAdmin)));
 			employeeRepository.save(admin);
 			
 			Employee superUser = new Employee();
-			//superUser.setEmpCode(103L);
+			superUser.setEmpCode(103L);
 			superUser.setEmpName("AlexFlex");
 			superUser.setPassword(passwordEncoder.encode("superassword"));
 			superUser.setAuthorities(new HashSet<Authority>(Arrays.asList(authorityUser, authorityAdmin)));

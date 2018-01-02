@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.javarnd.hrmis.constant.Gender;
+import com.javarnd.hrmis.constant.IdGen;
 import com.javarnd.hrmis.constant.MaritalStatus;
 
 import io.swagger.annotations.ApiModel;
@@ -28,14 +29,16 @@ import io.swagger.annotations.ApiModel;
 @Entity
 @Table(name="EMPLOYEE_DETAILS")
 @ApiModel(value="Employee")
-@GenericGenerator(name=IdGen.NAME, strategy=IdGen.AUTO)
+//@GenericGenerator(name=IdGen.NAME, strategy=IdGen.AUTO)
+@GenericGenerator(name=IdGen.NAME, strategy=IdGen.MANUAL)
 public class Employee extends IdEntity<Long> {
 	
 	@Override
 	public Long getId() {
 		System.out.println("getId method from Employee class");
-		this.empCode = super.getId();
-		return super.getId();
+		//this.empCode = super.getId();
+		//return super.getId();
+		return empCode;
 	}
 
 	/**

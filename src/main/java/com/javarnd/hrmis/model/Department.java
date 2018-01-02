@@ -8,6 +8,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.javarnd.hrmis.constant.IdGen;
+
 import io.swagger.annotations.ApiModel;
 
 @Entity
