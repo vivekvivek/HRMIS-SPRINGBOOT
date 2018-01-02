@@ -3,6 +3,8 @@ package com.javarnd.hrmis.service.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,13 +26,14 @@ public class EmployeeServiceImpl extends CrudServiceImpl<Employee, EmployeeModel
 	private EmployeeRepository employeeRepository;
 	
 	@Override
+	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		
 		Long employeeId = Long.parseLong(username);
 		Employee employeeDb = employeeRepository.findOne(employeeId);
 		
-		if(employeeDb == null){
+		if(employeeDb == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
 		

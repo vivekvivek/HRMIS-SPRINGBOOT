@@ -14,14 +14,17 @@ import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javarnd.hrmis.dto.EmployeeModel;
+import com.javarnd.hrmis.security.IAuthenticationFacade;
 import com.javarnd.hrmis.service.EmployeeService;
 
 import io.swagger.annotations.Api;
@@ -38,12 +41,22 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 
+	@Autowired
+    private IAuthenticationFacade authenticationFacade;
+	
 	private static org.slf4j.Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
 	public void setEmployeeService(EmployeeService employeeService) {
 		this.employeeService = employeeService;
 	}
 
+	@RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserNameSimple() {
+        Authentication authentication = authenticationFacade.getAuthentication();
+        return authentication.getName();
+    }
+	
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	@ApiOperation("Gets the employee with specific id")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = EmployeeModel.class) })

@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import com.javarnd.hrmis.constant.IdGen;
+
 /**
 * Base entity that has a default identifier specification.
 * Extends AbstractEntity to have all those properties, main
