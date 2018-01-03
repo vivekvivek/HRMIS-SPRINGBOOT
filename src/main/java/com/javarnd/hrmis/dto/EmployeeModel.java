@@ -2,7 +2,7 @@ package com.javarnd.hrmis.dto;
 
 public class EmployeeModel {
 	
-    private Long id;
+    private Long empCode;
     private String empName;
 	private String contactNumber;
 	private String passportNumber;
@@ -15,11 +15,11 @@ public class EmployeeModel {
 	private String designation;
 	private String grade;
 	
-	public Long getId() {
-		return id;
+	public Long getEmpCode() {
+		return empCode;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setEmpCode(Long empCode) {
+		this.empCode = empCode;
 	}
 	public String getEmpName() {
 		return empName;
