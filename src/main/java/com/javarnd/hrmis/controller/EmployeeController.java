@@ -105,7 +105,8 @@ public class EmployeeController {
 	public Resource<EmployeeModel> updateEmployee(@RequestBody EmployeeModel employeeModel,
 			@PathVariable(name = "id") Long id) throws UserException {
 		logger.debug("saveEmployee(POST) is invoked ... " + employeeModel);
-		employeeModel.setId(id);
+		//employeeModel.setId(id);
+		employeeModel.setEmpCode(id);
 		return getEmployeeModelResource(employeeService.update(employeeModel));
 	}
 
@@ -122,7 +123,8 @@ public class EmployeeController {
 		logger.debug("getEmployeeModelResource(POST) is invoked ... " + employeeModel);
 		Resource<EmployeeModel> resource = new Resource<EmployeeModel>(employeeModel);
 		// Link to EmployeeModel
-		resource.add(linkTo(methodOn(EmployeeController.class).getEmployee(employeeModel.getId())).withSelfRel());
+		//resource.add(linkTo(methodOn(EmployeeController.class).getEmployee(employeeModel.getId())).withSelfRel());
+		resource.add(linkTo(methodOn(EmployeeController.class).getEmployee(employeeModel.getEmpCode())).withSelfRel());
 		return resource;
 	}
 

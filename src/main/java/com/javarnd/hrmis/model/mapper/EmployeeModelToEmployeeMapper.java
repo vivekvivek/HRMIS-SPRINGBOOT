@@ -17,8 +17,8 @@ public class EmployeeModelToEmployeeMapper extends ConverterConfigurerSupport<Em
             @Override
             protected Employee convert(EmployeeModel source) {
                 System.out.println("converter method from UserModelToUserMapper class");
-                Employee user = new Employee();
-                return user;
+                Employee employee = new Employee();
+                return employee;
             }
         };
     }
