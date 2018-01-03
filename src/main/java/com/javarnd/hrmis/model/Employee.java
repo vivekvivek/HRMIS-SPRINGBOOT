@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -282,6 +283,7 @@ public class Employee extends IdEntity<Long> {
 		this.maritalStatus = maritalStatus;
 	}
 
+	@OneToOne
 	public Department getDepartment() {
 		return department;
 	}
