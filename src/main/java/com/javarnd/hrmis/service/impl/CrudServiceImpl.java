@@ -31,7 +31,9 @@ public class CrudServiceImpl<TEntity extends BaseEntity, TModel> implements Crud
  
     public TModel findOne(Long id) {
         TEntity entity = repository.findOne(id);
-        return modelMapper.map(entity, modelClass);
+        if(entity==null) return null;
+        else return modelMapper.map(entity, modelClass);
+        //return modelMapper.map(entity, modelClass);
     }
  
     public List<TModel> findAll() {
