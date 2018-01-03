@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javarnd.hrmis.dto.EmployeeModel;
+import com.javarnd.hrmis.exception.ExistingEmployeeCodeException;
+import com.javarnd.hrmis.model.Employee;
 import com.javarnd.hrmis.security.IAuthenticationFacade;
 import com.javarnd.hrmis.service.EmployeeService;
 
@@ -93,8 +95,12 @@ public class EmployeeController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.CREATED)
 	//@PreAuthorize("hasRole('ADMIN')")
-	public EmployeeModel saveEmployee(@RequestBody EmployeeModel employeeModel) throws UserException {
+	public EmployeeModel saveEmployee(@RequestBody EmployeeModel employeeModel) throws UserException, ExistingEmployeeCodeException {
 		logger.debug("saveEmployee(POST) is invoked ... " + employeeModel);
+		EmployeeModel employeeModelDb = employeeService.findOne(employeeModel.getEmpCode());
+		System.out.println("employeeModelDb: "+employeeModelDb);
+		// checking if employee already exists with provided employeeCode
+		if(employeeModelDb!=null) throw new ExistingEmployeeCodeException("Employee id already exists. Try with different employee id.");
 		return employeeService.create(employeeModel);
 	}
 
